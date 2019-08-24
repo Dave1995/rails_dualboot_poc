@@ -9,6 +9,9 @@ node(){
     checkout scm
   }
   stage('build'){
-    sh 'docker build .'
+    def app = docker.build("quay.io/doerler/rails_dualboot_poc:latest")
+    docker.withRegistry('http://quay.io', 'quay.io') {
+      app.push
+    }
   }
 }
