@@ -5,5 +5,10 @@ withCredentials([string(credentialsId: 'github-webhook-token', variable: 'github
 }
 
 node(){
-  echo 'test'
+  stage('checkout'){
+    scm checkout
+  }
+  stage('build'){
+    sh 'docker build .'
+  }
 }
