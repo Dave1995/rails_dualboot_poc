@@ -6,7 +6,7 @@ withCredentials([string(credentialsId: 'github-webhook-token', variable: 'github
 
 node(){
   stage('checkout'){
-    scm checkout
+    checkout scm
   }
   stage('build'){
     sh 'docker build .'
