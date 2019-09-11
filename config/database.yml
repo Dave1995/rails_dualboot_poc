@@ -39,6 +39,6 @@ test:
 
 production:
   <<: *default
-  database: rails_dualboot_poc_production
-  username: rails_dualboot_poc
-  password: <%= ENV['RAILS_DUALBOOT_POC_DATABASE_PASSWORD'] %>
+  database: postgres
+  username: postgres
+  password: postgres

@@ -9,7 +9,7 @@ node(){
     checkout scm
   }
   stage('build'){
-    def app = docker.build("quay.io/doerler/rails_dualboot_poc:latest")
+    def app = docker.build("quay.io/doerler/rails_dualboot_poc:latest", "--target basemri23 .")
     docker.withRegistry('https://quay.io', 'quay.io') {
       app.push('latest')
     }
