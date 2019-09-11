@@ -39,6 +39,8 @@ test:
 
 production:
   <<: *default
+  host: postgres
+  pport: 5432
   database: postgres
   username: postgres
   password: postgres
