@@ -4,7 +4,7 @@ RUN bundle install
 WORKDIR /workspace
 COPY ./ ./
 RUN ls -la
-ENTRYPOINT rails s
+ENTRYPOINT /bin/bash -c "SECRET_KEY_BASE=`rake secret` rails s -b 0.0.0.0"
 
 # FROM ruby:2.5.5 AS basemri25
 # ENV BUNDLE_GEMFILE=Gemfile50
