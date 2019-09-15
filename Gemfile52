@@ -8,7 +8,7 @@ gem 'bootsnap', require: false
 gem 'rails', '5.2.3'
 gem 'rails-controller-testing'
 gem 'pg', '~> 0.15', :platforms => :mri
-gem 'activerecord-jdbcpostgresql-adapter', '~> 50', '>= 1.50.3', platforms: :jruby
+gem 'activerecord-jdbcpostgresql-adapter', '~> 52', platforms: :jruby
 # Use postgresql as the database for Active Record
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'

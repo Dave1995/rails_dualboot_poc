@@ -8,6 +8,7 @@ gem 'bootsnap', require: false
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
 gem 'pg', '~> 0.15', platforms: :mri
+gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3', platforms: :jruby
 gem 'rails', '4.2.11'
 # Use postgresql as the database for Active Record
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
