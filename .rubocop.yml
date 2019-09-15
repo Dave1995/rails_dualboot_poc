@@ -1,0 +1,13 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  TargetRailsVersion: 5.0
+  
+# TODO: Remove these rules
+Rails/ApplicationRecord:
+  Enabled: false
+Rails/ApplicationJob:
+  Enabled: false
+Rails/HttpPositionalArguments:
+  Enabled: true

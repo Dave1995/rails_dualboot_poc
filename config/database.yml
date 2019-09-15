@@ -23,17 +23,17 @@ default: &default
 
 development:
   <<: *default
-  database: rails_dualboot_poc_development
-  username: 'rails_dualboot_poc_development'
-  password: 'rails_dualboot_poc_development'
+  database: customer_development
+  username: 'postgres'
+  password: 'postgres'
   host: localhost
   port: 5432
 
 test:
   <<: *default
-  database: rails_dualboot_poc_test
-  username: 'rails_dualboot_poc_test'
-  password: 'rails_dualboot_poc_test'
+  database: customer_test
+  username: 'postgres'
+  password: 'postgres'
   host: localhost
   port: 5432
 

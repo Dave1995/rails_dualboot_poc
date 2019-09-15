@@ -1,10 +1,14 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
+puts "loading Gemfile: #{__FILE__}"
+
+source 'https://rubygems.org'
+gem 'bootsnap', require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
+gem 'pg', '~> 0.15', platforms: :mri
 gem 'rails', '4.2.11'
-gem 'pg', '~> 0.15', :platforms => :mri
 # Use postgresql as the database for Active Record
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -22,11 +26,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug',  :platforms => :mri
+  gem 'byebug', platforms: :mri
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
-

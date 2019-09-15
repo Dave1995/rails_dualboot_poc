@@ -1,5 +1,7 @@
+puts "loading Gemfile: #{__FILE__}"
 source 'https://rubygems.org'
 
+gem 'bootsnap', require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
@@ -25,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug',  :platforms => :mri
+  gem 'rubocop'
+  gem 'rubocop-rails'
 end
 
 group :development do
