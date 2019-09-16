@@ -19,12 +19,14 @@ node(){
     }
     stage('test'){
     sh """
-      docker run -v `pwd`:/workspace -w /workspace ruby:2.5.5 /bin/bash -c << EOR
-        bundle install
-        rake db:create
-        rake db:migrate
-        rake tesst
-      EOR
+      docker run -i --network RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} -v `pwd`:/workspace -w /workspace ruby:2.5.5 /bin/bash << EOR
+      echo 'test'
+      curl RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}:5432
+  bundle install
+  rake db:create
+  rake db:migrate
+  rake tesst
+EOR
     """
       sh 'ls -la'
     }
