@@ -17,7 +17,17 @@ node(){
       sh "docker exec -u postgres RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} psql postgres -c \"CREATE DATABASE customer_development with OWNER=postgres;\""
       sh "docker exec -u postgres RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} psql postgres -c \"CREATE DATABASE customer_test with OWNER=postgres;\""
     }
-
+    stage('test'){
+    sh """
+      docker run -v `pwd`:/workspace -w /workspace ruby:2.5.5 /bin/bash -c << EOR
+        bundle install
+        rake db:create
+        rake db:migrate
+        rake tesst
+      EOR
+    """
+      sh 'ls -la'
+    }
   }catch(e){
 
   }finally{
