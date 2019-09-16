@@ -22,6 +22,8 @@ node(){
       docker run -i --network RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} -v `pwd`:/workspace -w /workspace ruby:2.5.5 /bin/bash << EOR
       echo 'test'
       curl RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}:5432
+      cd /workspace
+      ls -la
   bundle install
   rake db:create
   rake db:migrate
