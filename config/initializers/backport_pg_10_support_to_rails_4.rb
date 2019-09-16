@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+return if Rails::VERSION::MAJOR < 5
+
 require 'active_record/connection_adapters/postgresql/schema_statements'
 
 #
@@ -7,7 +9,6 @@ require 'active_record/connection_adapters/postgresql/schema_statements'
 #
 # Updates sequence logic to support PostgreSQL 10.
 #
-
 unless defined? JRUBY_VERSION
   module ActiveRecord
     module ConnectionAdapters
