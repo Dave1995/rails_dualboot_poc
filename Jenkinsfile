@@ -25,7 +25,7 @@ node(){
   bundle install
   rake db:create
   rake db:migrate
-  rake tesst
+  rake test
 EOR
     """
       sh 'ls -la'
