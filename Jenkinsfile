@@ -12,6 +12,8 @@ node(){
     stage('setup DB'){
       sh "docker network create RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}"
       sh "docker run --rm --network RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} --name RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} -e POSTGRES_PASSWORD=postgres -d postgres"
+      sh 'sleep 10'
+      sh 'docker logs RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}'
       sh "docker exec -u postgres RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} psql postgres -c \"CREATE DATABASE customer_development with OWNER=postgres;\""
       sh "docker exec -u postgres RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} psql postgres -c \"CREATE DATABASE customer_development with OWNER=postgres;\""
     }
@@ -21,7 +23,6 @@ node(){
   }finally{
     stage('teardown DB'){
       sh "docker container stop RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}"
-      sh "docker container rm RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}"
     }
   }
   stage('build'){
