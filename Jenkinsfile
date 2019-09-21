@@ -35,7 +35,7 @@ EOR
       junit './test/reports/*.xml'
     }
   }catch(e){
-
+    throw e
   }finally{
     stage('teardown DB'){
       sh "docker container stop RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}"
