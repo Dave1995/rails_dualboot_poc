@@ -33,7 +33,7 @@ node(){
 EOR
     """
       sh 'ls -la'
-      junit './test/reports/*.xml'
+      junit 'test/reports/*.xml'
     }
   }catch(e){
     throw e
