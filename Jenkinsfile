@@ -32,7 +32,7 @@ node(){
   rake test
 EOR
     """
-      sh 'ls -la'
+      sh 'ls -la test/reports'
       junit 'test/reports/*.xml'
     }
   }catch(e){
