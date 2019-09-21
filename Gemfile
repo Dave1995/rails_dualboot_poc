@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-puts "loading Gemfile: #{__FILE__}"
-
 source 'https://rubygems.org'
 gem 'bootsnap', require: false
 
