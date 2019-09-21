@@ -32,6 +32,7 @@ node(){
 EOR
     """
       sh 'ls -la'
+      junit './test/reports/*.xml'
     }
   }catch(e){
 
