@@ -25,6 +25,7 @@ node(){
       curl RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}:5432
       cd /workspace
       ls -la
+      export DB_HOST=RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}
   bundle install
   rake db:create
   rake db:migrate
