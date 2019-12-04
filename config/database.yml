@@ -39,7 +39,7 @@ test:
 
 production:
   <<: *default
-  host: postgres
+  host: <%= ENV['DB_HOST'] || 'localhost' %> 
   pport: 5432
   database: postgres
   username: postgres
