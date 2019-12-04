@@ -17,8 +17,11 @@ require 'rails/test_unit/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require File.expand_path('schaltroom', __dir__)
+
 module RailsDualbootPoc
   class Application < Rails::Application
+    config.load_defaults 6.0 if Schaltroom.active_since?(Rails, '6.0')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -32,8 +35,10 @@ module RailsDualbootPoc
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    if Rails::VERSION::MAJOR < 5
+    if Schaltroom.active_before?(Rails, '5.0')
       config.active_record.raise_in_transactional_callbacks = true
     end
   end
 end
+
+puts Schaltroom.calls
