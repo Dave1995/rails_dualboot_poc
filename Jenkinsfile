@@ -2,7 +2,7 @@ def runTestsWithGemfile(gemfile_name) {
   try{
     stage('prepare'){
       sh "mkdir -p workspace_${gemfile_name}"
-      sh "cp ./* workspace_${gemfile_name}"
+      sh "cp -r ./* workspace_${gemfile_name}"
     }
     stage('setup DB'){
       sh "docker network create RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name}"
