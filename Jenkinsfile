@@ -1,6 +1,7 @@
 def runTestsWithGemfile(gemfile_name) {
   try{
     stage('prepare'){
+      sh "mkdir -p workspace_${gemfile_name}"
       sh "cp ./* workspace_${gemfile_name}"
     }
     stage('setup DB'){
