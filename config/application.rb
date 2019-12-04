@@ -40,5 +40,3 @@ module RailsDualbootPoc
     end
   end
 end
-
-puts Schaltroom.calls
