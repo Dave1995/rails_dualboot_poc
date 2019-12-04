@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-class Customer < ActiveRecord::Base
+class Customer < ApplicationRecord
 end

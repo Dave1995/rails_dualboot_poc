@@ -88,6 +88,10 @@ GEM
     parser (2.6.4.1)
       ast (~> 2.4.0)
     pg (0.21.0)
+    puma (4.1.1)
+      nio4r (~> 2.0)
+    puma (4.1.1-java)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -132,6 +136,8 @@ GEM
       rack (>= 1.1)
       rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
+    schaltroom (0.0.1.pre)
+      zeitwerk (~> 2.1, >= 2.1.10)
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -158,6 +164,7 @@ GEM
     websocket-driver (0.6.5-java)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    zeitwerk (2.2.0)
 
 PLATFORMS
   java
@@ -169,10 +176,12 @@ DEPENDENCIES
   byebug
   jbuilder (~> 2.0)
   pg (~> 0.15)
+  puma
   rails (= 5.0.7.2)
   rails-controller-testing
   rubocop
   rubocop-rails
+  schaltroom (= 0.0.1.pre)
   sdoc (~> 0.4.0)
   web-console (~> 2.0)
 

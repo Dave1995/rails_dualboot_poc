@@ -61,6 +61,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.1, >= 2.1.8)
+    ansi (1.5.0)
     ast (2.4.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
@@ -97,6 +98,11 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
+    minitest-reporters (1.3.8)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     msgpack (1.3.1)
     msgpack (1.3.1-java)
     nio4r (2.5.1)
@@ -107,7 +113,11 @@ GEM
     parallel (1.17.0)
     parser (2.6.4.1)
       ast (~> 2.4.0)
-    pg (0.21.0)
+    pg (1.1.4)
+    puma (4.1.1)
+      nio4r (~> 2.0)
+    puma (4.1.1-java)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -155,6 +165,8 @@ GEM
       rack (>= 1.1)
       rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
+    schaltroom (0.0.1.pre)
+      zeitwerk (~> 2.1, >= 2.1.10)
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -192,11 +204,14 @@ DEPENDENCIES
   bootsnap
   byebug
   jbuilder (~> 2.0)
-  pg (~> 0.15)
+  minitest-reporters
+  pg (~> 1.1.4)
+  puma
   rails (= 6.0.0)
   rails-controller-testing
   rubocop
   rubocop-rails
+  schaltroom (= 0.0.1.pre)
   sdoc (~> 0.4.0)
   web-console (~> 2.0)
 
