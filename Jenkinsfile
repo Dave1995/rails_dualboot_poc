@@ -1,22 +1,26 @@
 def runTestsWithGemfile(gemfile_name) {
   try{
+    stage('prepare'){
+      sh "cp ./* workspace_${gemfile_name}"
+    }
     stage('setup DB'){
-      sh "docker network create RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}"
-      sh "docker run --rm --network RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} --name RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} -e POSTGRES_PASSWORD=postgres -d postgres"
+      sh "docker network create RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name}"
+      sh "docker run --rm --network RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name} --name RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name} -e POSTGRES_PASSWORD=postgres -d postgres"
       sh 'sleep 10'
-      sh "docker logs RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}"
-      sh "docker exec -u postgres RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} psql postgres -c \"CREATE DATABASE customer_development with OWNER=postgres;\""
-      sh "docker exec -u postgres RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} psql postgres -c \"CREATE DATABASE customer_test with OWNER=postgres;\""
+      sh "docker logs RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name}"
+      sh "docker exec -u postgres RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name} psql postgres -c \"CREATE DATABASE customer_development with OWNER=postgres;\""
+      sh "docker exec -u postgres RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name} psql postgres -c \"CREATE DATABASE customer_test with OWNER=postgres;\""
     }
     stage('test'){
       sh 'ls -la'
     sh """
-      docker run -i --network RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER} -v `pwd`:/workspace -w /workspace ruby:2.5.5 /bin/bash << EOR
+      docker run -i --network RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name} -v `pwd`:/workspace -w /workspace ruby:2.5.5 /bin/bash << EOR
       echo 'test'
-      curl RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}:5432
+      curl RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name}:5432
       cd /workspace
       ls -la
-      export DB_HOST=RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}
+      export DB_HOST=RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name}
+      export BUNDLE_GEMFILE=${gemfile_name}
   bundle install
   rake db:create
   rake db:migrate
@@ -30,7 +34,7 @@ EOR
     throw e
   }finally{
     stage('teardown DB'){
-      sh "docker container stop RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}"
+      sh "docker container stop RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name}"
     }
   }
 }
