@@ -1,13 +1,4 @@
-withCredentials([string(credentialsId: 'github-webhook-token', variable: 'githubWebhookToken')]) {
-  properties([
-    pipelineTriggers([GenericTrigger(causeString: 'Generic Cause', regexpFilterExpression: '', regexpFilterText: '', token: "rails_dualboot_poc-${githubWebhookToken}")])
-  ])
-}
-
-node(){
-  stage('checkout'){
-    checkout scm
-  }
+def runTestsWithGemfile(gemfile_name) {
   try{
     stage('setup DB'){
       sh "docker network create RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}"
@@ -42,6 +33,19 @@ EOR
       sh "docker container stop RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}"
     }
   }
+}
+
+withCredentials([string(credentialsId: 'github-webhook-token', variable: 'githubWebhookToken')]) {
+  properties([
+    pipelineTriggers([GenericTrigger(causeString: 'Generic Cause', regexpFilterExpression: '', regexpFilterText: '', token: "rails_dualboot_poc-${githubWebhookToken}")])
+  ])
+}
+
+node(){
+  stage('checkout'){
+    checkout scm
+  }
+  runTestsWithGemfile("Gemfile")
   stage('build'){
     def app = docker.build("quay.io/doerler/rails_dualboot_poc:latest", ".")
     docker.withRegistry('https://quay.io', 'quay.io') {
