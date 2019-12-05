@@ -46,6 +46,15 @@ EOR
   }
 }
 
+def buildProductionImageWithGemfileAndTag(gemfile_name, tag) {
+  stage('build'){
+    def app = docker.build("quay.io/doerler/rails_dualboot_poc:${tag}", " --build-arg GEMFILE=${gemfile_name} .")
+    docker.withRegistry('https://quay.io', 'quay.io') {
+      app.push("${tag}")
+    }
+  }
+}
+
 withCredentials([string(credentialsId: 'github-webhook-token', variable: 'githubWebhookToken')]) {
   properties([
     pipelineTriggers([GenericTrigger(causeString: 'Generic Cause', regexpFilterExpression: '', regexpFilterText: '', token: "rails_dualboot_poc-${githubWebhookToken}")])
@@ -58,10 +67,5 @@ node(){
     checkout scm
   }
   runTestsWithGemfile("Gemfile")
-  stage('build'){
-    def app = docker.build("quay.io/doerler/rails_dualboot_poc:latest", ".")
-    docker.withRegistry('https://quay.io', 'quay.io') {
-      app.push('latest')
-    }
-  }
+  buildProductionImageWithGemfileAndTag("Gemfile","latest")
 }
