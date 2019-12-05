@@ -71,5 +71,9 @@ node(){
   }, rails_6_0: {
     runTestsWithGemfile("Gemfile60")
   }
-  buildProductionImageWithGemfileAndTag("Gemfile","latest")
+  parallel rails4_2: {
+    buildProductionImageWithGemfileAndTag("Gemfile","latest")
+  }, rails_6_0: {
+    buildProductionImageWithGemfileAndTag("Gemfile60","latest_rails60")
+  }
 }
