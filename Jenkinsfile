@@ -66,6 +66,10 @@ node(){
     cleanWs()
     checkout scm
   }
-  runTestsWithGemfile("Gemfile")
+  parallel rails4_2: {
+    runTestsWithGemfile("Gemfile")
+  }, rails_6_0: {
+    runTestsWithGemfile("Gemfile60")
+  }
   buildProductionImageWithGemfileAndTag("Gemfile","latest")
 }
