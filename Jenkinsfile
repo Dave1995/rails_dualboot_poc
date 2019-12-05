@@ -55,7 +55,7 @@ withCredentials([string(credentialsId: 'github-webhook-token', variable: 'github
 
 node(){
   stage('checkout'){
-    deleteDirs
+    cleanWs()
     checkout scm
   }
   runTestsWithGemfile("Gemfile")
