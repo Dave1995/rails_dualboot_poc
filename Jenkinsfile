@@ -16,6 +16,7 @@ def runTestsWithGemfile(gemfile_name) {
     }
     stage('test'){
       dir("../workspace_${gemfile_name}"){
+        try{
         sh """
       docker run -u 1000:1000 -i --network RAILS_DUALBOOT_POC_DB_${BUILD_NUMBER}_${gemfile_name} -v `pwd`:/workspace -w /workspace ruby:2.5.5 /bin/bash << EOR
       echo 'test'
@@ -30,8 +31,16 @@ def runTestsWithGemfile(gemfile_name) {
   rake test
 EOR
     """
+        }catch(e){
+          echo 'The test might have failed. ignore for now'
+        }
         sh "ls -la test/reports"
-        junit "test/reports/*.xml"
+        try{
+          junit "test/reports/*.xml"
+        }catch(e){
+          echo 'junit failed'
+          throw e
+        }
       }
     }
   }catch(e){
