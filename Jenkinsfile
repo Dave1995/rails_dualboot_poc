@@ -32,14 +32,10 @@ def runTestsWithGemfile(gemfile_name) {
 EOR
     """
         }catch(e){
-          echo 'The test might have failed. ignore for now'
-        }
-        sh "ls -la test/reports"
-        try{
-          junit "test/reports/*.xml"
-        }catch(e){
-          echo 'junit failed'
           throw e
+        }finally{
+          junit "test/reports/*.xml"
+
         }
       }
     }
