@@ -114,6 +114,7 @@ GEM
     parser (2.6.5.0)
       ast (~> 2.4.0)
     pg (1.1.4)
+    prometheus_exporter (0.4.16)
     puma (4.3.1)
       nio4r (~> 2.0)
     puma (4.3.1-java)
@@ -206,12 +207,13 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   minitest-reporters
   pg (~> 1.1.4)
+  prometheus_exporter
   puma
   rails (= 6.0.0)
   rails-controller-testing
   rubocop
   rubocop-rails
-  schaltroom (= 0.0.2)
+  schaltroom (~> 0.0.2)
   sdoc (~> 0.4.0)
   web-console (~> 2.0)
 

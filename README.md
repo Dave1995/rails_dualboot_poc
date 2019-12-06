@@ -1,5 +1,15 @@
 Rails 4.2 and 5.2 dualboot POC with mri and jruby support.
 
+# Bundle Update
+```bash
+# run Bundle update on all Gemfiles
+bundle update
+BUNDLE_GEMFILE=Gemfile50 bundle update
+BUNDLE_GEMFILE=Gemfile51 bundle update
+BUNDLE_GEMFILE=Gemfile52 bundle update
+BUNDLE_GEMFILE=Gemfile60 bundle update
+
+
 Creation:
 docker run -u `id -u`:`id -g` -v `pwd`:/rails_dualboot_poc -it ruby:2.3.8 /bin/bash -c "cd /rails_dualboot_poc && gem install rails -v 4.2.11 && rails new ./ --database=postgresql --skip-spring --skip-sprockets --skip-javascript --skip-turbolinks --api && rails generate scaffold customer" 
 
