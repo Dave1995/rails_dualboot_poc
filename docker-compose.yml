@@ -17,6 +17,33 @@ services:
     - postgres
     - traefik
     deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        order: start-first
+      labels:
+        - "traefik.enable=true"
+        - "traefik.port=3000"
+        - "traefik.docker.network=traefik"
+        - "traefik.frontend.rule=Host:customer.dev.oerler.io"
+  customer_rails60:
+    image: quay.io/doerler/rails_dualboot_poc:latest_rails60
+    environment: 
+    - RAILS_ENV=production
+    - DB_HOST=postgres
+    entrypoint:
+    - "/bin/bash"
+    - -ecx
+    - |
+        rake db:setup && rake db:migrate && SECRET_KEY_BASE=`rake secret` rails s -b 0.0.0.0
+    networks:
+    - postgres
+    - traefik
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        order: start-first
       labels:
         - "traefik.enable=true"
         - "traefik.port=3000"
