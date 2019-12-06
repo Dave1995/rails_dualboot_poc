@@ -1,0 +1,3 @@
+---
+- SimpleTest#test_assertion
+- SimpleTest#test_raise
