@@ -1,1 +1,30 @@
 # docker stack deploy customer -c ./customer.yml
+
+version: '3.6'
+
+services:
+  customer:
+    image: quay.io/doerler/rails_dualboot_poc:latest
+    environment: 
+    - RAILS_ENV=production
+    entrypoint:
+    - "/bin/bash"
+    - -ecx
+    - |
+        rake db:setup && rake db:migrate && SECRET_KEY_BASE=`rake secret` rails s -b 0.0.0.0
+    networks:
+    - postgres
+    - traefik
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.port=3000"
+        - "traefik.docker.network=traefik"
+        - "traefik.frontend.rule=Host:customer.dev.oerler.io"
+networks:
+  postgres:
+    external:
+      name: postgres
+  traefik:
+    external:
+      name: traefik
