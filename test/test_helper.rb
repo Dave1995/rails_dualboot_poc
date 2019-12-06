@@ -14,7 +14,7 @@ end
 require "minitest/reporters"
 class Minitest::Reporters::BaseReporter
   def passed?
-    return self.tests.find { |test| test.failure } if Rails.gem_version < Gem::Version.new('6')
+    return !self.tests.any? { |test| test.failure } if Rails.gem_version < Gem::Version.new('6')
     failed_test_identifier_strings = []
 
     failed_tests = self.tests.select(&:failure)
