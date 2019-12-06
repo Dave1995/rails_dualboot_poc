@@ -9,9 +9,13 @@ module Rack
   class  HealthCheck
     def call(env)
       status = {
-        postgres: {
-          connected: postgres_connected,
-          migrations_updated: postgres_migrations_updated
+        # postgres: {
+        #   connected: postgres_connected,
+        #   migrations_updated: postgres_migrations_updated,
+        #   rails_version: Rails.version
+        # }, 
+        version: {
+          rails: Rails.version
         }
       }
 

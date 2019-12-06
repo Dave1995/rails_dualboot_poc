@@ -81,4 +81,7 @@ node(){
   }, rails_6_0: {
     buildProductionImageWithGemfileAndTag("Gemfile60","latest_rails60")
   }
+  stage('deploy'){
+    sh "docker stack deploy customer -c ./docker-compose.yml"
+  }
 }
