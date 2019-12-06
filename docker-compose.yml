@@ -22,6 +22,7 @@ services:
         parallelism: 2
         order: start-first
       labels:
+        - "traefik.backend=customer"
         - "traefik.enable=true"
         - "traefik.port=3000"
         - "traefik.docker.network=traefik"
@@ -35,7 +36,7 @@ services:
     - "/bin/bash"
     - -ecx
     - |
-        rake db:setup && rake db:migrate && SECRET_KEY_BASE=`rake secret` rails s -b 0.0.0.0
+        rake db:migrate && SECRET_KEY_BASE=`rake secret` rails s -b 0.0.0.0
     networks:
     - postgres
     - traefik
@@ -45,6 +46,7 @@ services:
         parallelism: 2
         order: start-first
       labels:
+        - "traefik.backend=customer"
         - "traefik.enable=true"
         - "traefik.port=3000"
         - "traefik.docker.network=traefik"

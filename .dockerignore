@@ -1,3 +1,13 @@
 Dockerfile
 Jenkinsfile
 vendor/cache
+docker-compose.yml
+Jenkinsfile
+Makefile
+README.md
+README.rdoc
+
+.git
+.dockerignore
+.gitignore
+.rubocop.yml
