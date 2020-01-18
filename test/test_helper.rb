@@ -27,6 +27,7 @@ class Minitest::Reporters::BaseReporter
     failed_tests = tests.select(&:failure)
     failed_tests.each do |t|
       test_identifier_string = "#{t.klass}##{t.name}"
+      puts test_identifier_string
       failed_test_identifier_strings << test_identifier_string
     end
     test_whitelist = YAML.load_file(File.join(__dir__, 'whitelist.yml'))

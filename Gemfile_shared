@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 gem 'bootsnap', require: false
 gem 'prometheus_exporter'
-gem 'schaltroom', '~>0.0.2'
+gem 'schaltroom', '~>0.0.3'
 
 gem 'puma'
 

@@ -44,6 +44,7 @@ GEM
     arel (6.0.4)
     ast (2.4.0)
     bcrypt (3.1.13)
+    bcrypt (3.1.13-java)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
     bootsnap (1.4.5-java)
@@ -133,7 +134,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
-    schaltroom (0.0.2)
+    schaltroom (0.0.3)
       zeitwerk (~> 2.1, >= 2.1.10)
     sdoc (1.0.0)
       rdoc (>= 5.0)
@@ -173,7 +174,7 @@ DEPENDENCIES
   rails (= 4.2.11.1)
   rubocop
   rubocop-rails
-  schaltroom (~> 0.0.2)
+  schaltroom (~> 0.0.3)
   sdoc
   web-console
 

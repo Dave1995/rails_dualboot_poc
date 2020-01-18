@@ -18,30 +18,50 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { email: "test@test.com", password: 'secret', password_confirmation: 'secret' }
+      if Rails::VERSION::MAJOR < 5
+        post :create, user: { email: "test@test.com", password: 'secret', password_confirmation: 'secret' }
+      else
+        post :create, params: { user: { email: "test@test.com", password: 'secret', password_confirmation: 'secret' }}
+      end
     end
 
     assert_redirected_to user_path(assigns(:user))
   end
 
   test "should show user" do
-    get :show, id: @user
+    if Rails::VERSION::MAJOR < 5
+      get :show, id: @user
+    else
+      get :show, params: { id: @user }
+    end
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @user
+    if Rails::VERSION::MAJOR < 5
+      get :edit, id: @user
+    else
+      get :edit, params: { id: @user }
+    end
     assert_response :success
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { email: @user.email, password: 'secret', password_confirmation: 'secret' }
+    if Rails::VERSION::MAJOR < 5
+      patch :update, id: @user, user: { email: @user.email, password: 'secret', password_confirmation: 'secret' }
+    else
+      patch :update, params: { id: @user, user: { email: @user.email, password: 'secret', password_confirmation: 'secret' }}
+    end
     assert_redirected_to user_path(assigns(:user))
   end
 
   test "should destroy user" do
     assert_difference('User.count', -1) do
-      delete :destroy, id: @user
+      if Rails::VERSION::MAJOR < 5
+        delete :destroy, id: @user
+      else
+        delete :destroy, params: { id: @user }
+      end
     end
 
     assert_redirected_to users_path

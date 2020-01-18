@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-return if Rails::VERSION::MAJOR >= 5
+return if Schaltroom[:rails] >= '5.0'
 
 require 'active_record/connection_adapters/postgresql/schema_statements'
 

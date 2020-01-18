@@ -10,5 +10,5 @@ end
 Schaltroom.repository do |repository|
   repository.add_feature(:deprecated_finders, :boolean, true)
   repository.add_feature(:find_backport, :boolean, true)
-  repository.add_gem(Rails)
+  repository.add_feature(:rails, :version, Rails::VERSION::STRING)
 end
