@@ -62,6 +62,7 @@ def buildProductionImageWithGemfileAndTag(gemfile_name, tag) {
 
 withCredentials([string(credentialsId: 'github-webhook-token', variable: 'githubWebhookToken')]) {
   properties([
+    disableConcurrentBuilds(),
     pipelineTriggers([GenericTrigger(causeString: 'Generic Cause', regexpFilterExpression: '', regexpFilterText: '', token: "rails_dualboot_poc-${githubWebhookToken}")])
   ])
 }
