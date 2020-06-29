@@ -21,12 +21,13 @@ services:
       update_config:
         parallelism: 2
         order: start-first
-      labels:
-        - "traefik.backend=customer"
-        - "traefik.enable=true"
-        - "traefik.port=3000"
-        - "traefik.docker.network=traefik"
-        - "traefik.frontend.rule=Host:customer.dev.oerler.io"
+    labels:
+    - "traefik.enable=true"
+    - "traefik.docker.network=traefik"
+    - "traefik.http.routers.customer.entrypoints=websecure"
+    - "traefik.http.routers.customer.rule=Host(`customer.dev.oerler.io`)"
+    - "traefik.http.services.customer.loadbalancer.server.port=3000"
+    - "traefik.http.routers.customer.tls.certresolver=myhttpchallenge"
   customer_rails60:
     image: quay.io/doerler/rails_dualboot_poc:latest_rails60
     environment: 
@@ -45,12 +46,13 @@ services:
       update_config:
         parallelism: 2
         order: start-first
-      labels:
-        - "traefik.backend=customer"
-        - "traefik.enable=true"
-        - "traefik.port=3000"
-        - "traefik.docker.network=traefik"
-        - "traefik.frontend.rule=Host:customer.dev.oerler.io"
+    labels:
+    - "traefik.enable=true"
+    - "traefik.docker.network=traefik"
+    - "traefik.http.routers.customer.entrypoints=websecure"
+    - "traefik.http.routers.customer.rule=Host(`customer.dev.oerler.io`)"
+    - "traefik.http.services.customer.loadbalancer.server.port=3000"
+    - "traefik.http.routers.customer.tls.certresolver=myhttpchallenge"
 networks:
   postgres:
     external:
