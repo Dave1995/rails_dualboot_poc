@@ -15,6 +15,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'deprecation_toolkit', '~> 1.4'
 group :test do
   gem 'minitest-reporters'
 end

@@ -1,0 +1,3 @@
+---
+test_trigger_deprecation_warning:
+- 'DEPRECATION WARNING: manually triggerd deprecation warning'

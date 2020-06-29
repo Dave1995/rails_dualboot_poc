@@ -71,14 +71,14 @@ node(){
     cleanWs()
     checkout scm
   }
-  parallel rails4_2: {
+  parallel test: {
     runTestsWithGemfile("Gemfile")
-  }, rails_6_0: {
+  }, test_rails60: {
     runTestsWithGemfile("Gemfile60")
   }
-  parallel rails4_2: {
+  parallel build: {
     buildProductionImageWithGemfileAndTag("Gemfile","latest")
-  }, rails_6_0: {
+  }, build_60: {
     buildProductionImageWithGemfileAndTag("Gemfile60","latest_rails60")
   }
   stage('deploy'){
