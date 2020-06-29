@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 eval_gemfile(File.join(File.dirname(__FILE__), "Gemfile_shared"))
 
-gem 'rails', '6.0.1'
+gem 'rails', '~>6.0.1'
 gem 'rails-controller-testing'
 gem 'pg', '~> 1.1.4', :platforms => :mri
 gem 'activerecord-jdbcpostgresql-adapter', '60.0', platforms: :jruby

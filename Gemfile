@@ -7,4 +7,4 @@ eval_gemfile(File.join(File.dirname(__FILE__), 'Gemfile_shared'))
 
 gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3', platforms: :jruby
 gem 'pg', '~> 0.15', platforms: :mri
-gem 'rails', '4.2.11.1'
+gem 'rails', '~>4.2.11.1'
